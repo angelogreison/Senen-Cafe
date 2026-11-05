@@ -20,7 +20,10 @@
 <meta name="description" content="Senén, café de especialidad en Buenos Aires. El sabor de una Cuba que sigue sonando.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Yellowtail&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/web/hero-movil.webp" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/web/hero-pc.webp" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Yellowtail&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Yellowtail&display=swap"></noscript>
 <style>
   /* =========================================================
      SENÉN · La página es la sala de estar del café.
@@ -43,6 +46,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  :focus-visible{outline:3px solid var(--dorado);outline-offset:3px;box-shadow:0 0 0 2px var(--cafe);}
   body{
     background:var(--crema);color:var(--cafe);
     font-family:'DM Sans',sans-serif;font-size:1.0625rem;line-height:1.7;font-weight:400;
@@ -107,7 +111,6 @@
   .wall-brick{background:url('assets/web/ladrillo-pared.webp') center top/1100px auto repeat;}
   .wall-brick::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(43,27,22,.18),rgba(43,27,22,.42));pointer-events:none;}
   .wall-brick.dark::before{background:rgba(43,27,22,.62);}
-  .wall-brick.terra::before{background:linear-gradient(rgba(134,57,31,.74),rgba(90,36,20,.86));}
 
   /* Cemento amarillo con manchas, humedad y pintura saltada */
   .wall-yellow{
@@ -115,7 +118,7 @@
     background-image:
       radial-gradient(ellipse at 12% 100%, rgba(90,50,10,.38), transparent 45%),
       radial-gradient(ellipse at 88% 0%, rgba(255,236,170,.2), transparent 42%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='a' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.007 .011' numOctaves='5' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42 0 0 0 0 .24 0 0 0 0 .03 1.5 0 0 0 -.78'/></filter><filter id='c' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.02 .016' numOctaves='4' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .62 2.6 0 0 0 -1.35'/></filter><filter id='g' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .25 0 0 0 0 .15 0 0 0 0 .03 0 0 0 .28 -.05'/></filter><rect width='800' height='800' filter='url(%23a)'/><rect width='800' height='800' filter='url(%23g)'/><path d='M96 0 L110 54 L92 96 L118 160 L104 214 L132 262' fill='none' stroke='rgb(70,40,8)' stroke-opacity='.4' stroke-width='1.6'/><path d='M560 800 L548 742 L572 690 L556 640 L586 590' fill='none' stroke='rgb(70,40,8)' stroke-opacity='.35' stroke-width='1.4'/></svg>");
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='a' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.007 .011' numOctaves='5' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42 0 0 0 0 .24 0 0 0 0 .03 1.5 0 0 0 -.78'/></filter><filter id='c' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.02 .016' numOctaves='4' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 .92 0 0 0 0 .62 2.6 0 0 0 -1.35'/></filter><filter id='g' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' seed='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .25 0 0 0 0 .15 0 0 0 0 .03 0 0 0 .28 -.05'/></filter><rect width='800' height='800' filter='url(%23a)'/><rect width='800' height='800' filter='url(%23g)'/></svg>");
     background-size:auto,auto,800px 800px;
   }
   .wall-yellow.alt{background-position:0 0,0 0,330px 210px;}
@@ -130,52 +133,16 @@
     background-size:auto,auto,600px 600px;
   }
 
-  /* Madera (tablones) */
-  .wall-floor{background:linear-gradient(rgba(43,27,22,.18),rgba(43,27,22,.18)),url('assets/web/piso-madera.webp') center top/420px auto repeat;}
-  .wall-wood{
-    background-color:#5e3a21;
-    background-image:
-      repeating-linear-gradient(90deg,rgba(0,0,0,.42) 0 3px,transparent 3px 130px),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='w' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='.012 .5' numOctaves='3' seed='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .08 0 0 0 0 .04 0 0 0 0 .02 1.6 0 0 0 -.55'/></filter><rect width='400' height='400' filter='url(%23w)'/></svg>"),
-      linear-gradient(rgba(255,255,255,.05),transparent);
-  }
-
-  /* Enlucido crema */
-  .wall-crema{
-    background-color:var(--crema);
-    background-image:radial-gradient(ellipse at 10% 0%,rgba(255,255,255,.5),transparent 50%),radial-gradient(ellipse at 100% 100%,rgba(162,74,49,.10),transparent 55%);
-  }
-
   /* Pisos */
   .floor{position:absolute;left:0;right:0;bottom:0;height:var(--floor,66px);border-top:12px solid #3b2418;box-shadow:inset 0 16px 14px -8px rgba(0,0,0,.5);z-index:1;}
   .floor-wood{background:linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,0) 55%),url('assets/web/piso-madera.webp') center top/340px auto repeat;}
-  .floor-tile{background:repeating-conic-gradient(#d8cdb4 0 25%,#b4a687 0 50%) 0 0/48px 48px;}
-  .floor-terra{background:repeating-conic-gradient(#b8553a 0 25%,#9c452e 0 50%) 0 0/48px 48px;}
 
   /* =========================================================
      OBJETOS (muebles, vinilos, tapas, carteles)
      ========================================================= */
-  .furn{position:absolute;height:auto;display:block;filter:drop-shadow(0 8px 6px rgba(0,0,0,.38));}
   .glow{filter:drop-shadow(0 0 20px rgba(255,214,120,.9)) drop-shadow(0 8px 6px rgba(0,0,0,.3));}
-  /* objetos reales recortados de las fotos del local */
   .deco{position:absolute;height:auto;display:block;pointer-events:none;z-index:1;filter:drop-shadow(0 10px 8px rgba(0,0,0,.38));}
   .deco.glow{filter:drop-shadow(0 0 18px rgba(255,200,110,.55)) drop-shadow(0 8px 6px rgba(0,0,0,.3));}
-  .obj{position:absolute;height:auto;display:block;pointer-events:none;filter:drop-shadow(0 9px 7px rgba(0,0,0,.42));}
-  .obj.glow{filter:drop-shadow(0 0 16px rgba(255,196,100,.55)) drop-shadow(0 8px 6px rgba(0,0,0,.35));}
-
-  /* Habitaciones (rincones entre secciones) */
-  .room{position:relative;height:var(--h,340px);overflow:hidden;padding:0;}
-  .room-items{position:absolute;inset:0;z-index:2;}
-  .room-items .floor-item{bottom:calc(var(--floor,66px) - 14px);}
-  .sign{
-    position:absolute;left:50%;top:70px;transform:translateX(-50%);z-index:3;
-    width:min(560px,52%);padding:20px 26px;text-align:center;border-radius:6px;
-    background:linear-gradient(#6b4226,#5a3820);border:4px solid #2a1a10;color:var(--crema);
-    box-shadow:0 14px 24px rgba(0,0,0,.5), inset 0 0 0 3px rgba(216,154,39,.35);
-    font-family:'Fraunces',serif;font-weight:700;font-style:italic;font-size:clamp(1.05rem,2.1vw,1.55rem);line-height:1.25;
-  }
-  .sign::before,.sign::after{content:'';position:absolute;top:-70px;width:4px;height:70px;background:repeating-linear-gradient(#aaa 0 7px,#555 7px 11px);}
-  .sign::before{left:14%;} .sign::after{right:14%;}
 
   /* Vinilo colgado en la pared */
   .wdisc{
@@ -238,14 +205,6 @@
   .c-disc{width:34cqw;aspect-ratio:1;border-radius:50%;margin:5cqw 0 4cqw;background:radial-gradient(circle,var(--papel) 0 11%,var(--tinta) 11.5% 30%,transparent 30.5%),repeating-radial-gradient(circle,var(--tinta) 0 .7cqw,transparent .7cqw 1.7cqw);}
   .c-quote{font-family:'Fraunces',serif;font-weight:900;font-size:11cqw;line-height:1;text-transform:uppercase;}
 
-  /* cuadros colgados (marcos de madera) */
-  .pframe{position:absolute;z-index:2;border:6px solid #3b2418;background:var(--bg,linear-gradient(135deg,#caa77a,#8a6a43));box-shadow:0 10px 16px rgba(0,0,0,.4), inset 0 0 0 4px rgba(243,231,210,.9);}
-
-  /* repisa */
-  .shelf{position:absolute;height:2.4cqw;background:linear-gradient(#8b5a33,#6b4226);box-shadow:0 8px 10px rgba(0,0,0,.4);border-radius:2px;z-index:2;}
-  .shelf::before,.shelf::after{content:'';position:absolute;top:100%;width:1.6cqw;height:4cqw;background:#1f1612;clip-path:polygon(0 0,100% 0,100% 100%);}
-  .shelf::before{left:6%;} .shelf::after{right:6%;transform:scaleX(-1);}
-
   /* =========================================================
      NAV + HERO
      ========================================================= */
@@ -262,13 +221,13 @@
   .nav-links a{font-size:.95rem;font-weight:600;color:var(--cafe);position:relative;padding-bottom:4px;}
   .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--ladrillo);transition:width .3s ease;}
   .nav-links a:hover::after{width:100%;}
-  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;z-index:200;position:relative;}
+  .burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;background:none;border:none;padding:8px;min-width:44px;min-height:44px;z-index:200;position:relative;}
   .burger span{width:26px;height:3px;background:var(--cafe);transition:transform .3s ease, opacity .3s ease;}
   .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
   .burger.open span:nth-child(2){opacity:0;}
   .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
   .mobile-menu{
-    display:none;position:fixed;inset:0;height:100vh;background:var(--crema);z-index:150;
+    display:none;position:fixed;inset:0;height:100vh;height:100dvh;background:var(--crema);z-index:150;
     flex-direction:column;align-items:center;justify-content:center;gap:30px;
     opacity:0;visibility:hidden;transition:opacity .35s ease;
   }
@@ -318,10 +277,8 @@
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:end;padding-bottom:calc(var(--floor,80px) - 8px);position:relative;z-index:2;}
   .about-text{padding-bottom:30px;}
   .about-text p{margin-top:20px;}
-  /* contraste sobre la pared amarilla: texto más firme y un halo del mismo amarillo que lo separa de las manchas */
   .about-text p,.homage-text p{font-weight:500;color:#1a0f0b;}
   .about .stat .lbl{color:#1a0f0b;}
-  .about-quote{text-shadow:none;}
   .about-quote{
     margin-top:28px;padding:20px 26px;border-left:5px solid var(--cafe);background:var(--blanco-calido);
     font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:1.25rem;line-height:1.45;color:var(--cafe);box-shadow:0 8px 18px rgba(43,27,22,.2);
@@ -379,7 +336,7 @@
     box-shadow:inset 0 0 0 4px rgba(0,0,0,.2);
   }
   .vinyl-label span{display:block;}
-  .vinyl-label small{display:block;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.5rem;letter-spacing:.8px;margin-top:4px;}
+  
   @keyframes spin{to{transform:rotate(360deg);}}
 
   .deck{
@@ -409,7 +366,7 @@
   .deck.playing .deck-led{background:#ff4b3a;box-shadow:0 0 10px #ff4b3a;}
 
   .vinyl-status{font-size:.9rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dorado);min-height:1.2em;text-align:center;}
-  .player-box{background:var(--cafe-soft);border:2px solid var(--dorado);border-radius:10px;padding:16px;}
+  .player-box{min-width:0;background:var(--cafe-soft);border:2px solid var(--dorado);border-radius:10px;padding:16px;}
   .player-box .label{font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dorado);margin-bottom:12px;}
   #spotifyEmbed{min-height:352px;}
   .player-fallback{display:none;margin-top:12px;font-size:.95rem;}
@@ -567,7 +524,7 @@
   }
   footer{background:var(--cafe);color:var(--crema);padding:40px 0;border-top:4px solid var(--dorado);}
   .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:.95rem;}
-  .footer-inner a{color:var(--dorado);font-weight:700;}
+  .footer-inner a{color:var(--dorado);font-weight:700;display:inline-block;padding:12px 6px;}
   .footer-inner a:hover{text-decoration:underline;}
 
   /* =========================================================
@@ -577,13 +534,13 @@
     .hide-t{display:none !important;}
   }
   @media (max-width:1000px){
-    .turntable-grid{grid-template-columns:1fr;gap:40px;}
+    .turntable-grid{grid-template-columns:minmax(0,1fr);gap:40px;}
   }
   @media (max-width:900px){
     .nav-links,.nav .btn{display:none;}
     .burger{display:flex;}
     .mobile-menu{display:flex;}
-    .about-grid,.contact-grid,.homage{grid-template-columns:1fr;gap:40px;}
+    .about-grid,.homage{grid-template-columns:minmax(0,1fr);gap:40px;}
     .about-grid{align-items:start;}
     section{padding:80px 0;}
     .about{padding-bottom:0;}
@@ -591,10 +548,6 @@
     .sound-btn{right:16px;bottom:22px;}
     .hero-stamp{left:16px;bottom:22px;}
     .hero-content{padding-top:80px;}
-    .room{--h:300px;}
-    .room-items .furn{zoom:.7;}
-    .room-items .sleeve-img,.room-items .wdisc{zoom:.75;}
-    .sign{width:min(86%,420px);top:44px;padding:14px 16px;}
     .hide-m{display:none !important;}
   }
   @media (max-width:560px){
@@ -605,29 +558,42 @@
   }
   @media (max-width:400px){
     .nav-logo span{font-size:1.3rem;}
-    .deck{zoom:.78;}
   }
   @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
     *{transition:none !important;animation:none !important;}
     .reveal,.reveal-scale,.stagger > *,.hero-eyebrow,.hero-content h1,.hero-content p,.hero-btns{opacity:1;transform:none;}
   }
   /* Móvil: el rincón de muebles se reduce y se recorta para no salir de la pantalla */
   @media (max-width:900px){
-    .about-visual{overflow:hidden;padding:24px 0 0;}
-    .corner{transform:scale(.72);transform-origin:50% 100%;}
-    .about-grid{padding-bottom:calc(var(--floor,80px) - 16px);}
-    .about-visual .poster,.about-visual::before{display:none;}
+    /* la composición ocupa de -10cqw a 119cqw: se reduce para que quepa completa y apoye sobre el piso */
+    .corner{width:77.4%;margin-left:7.74%;margin-bottom:calc(40px + 7.74%);}
+    .about-grid{padding-bottom:0;}
     .sleeve-img{max-width:none;}
-    .tocadiscos .deck{zoom:.9;}
+  }
+  /* Tablet y laptop chica: el rincón se achica un poco para que el sillón azul no se corte en el borde */
+  @media (min-width:901px) and (max-width:1300px){
+    .corner{width:84%;}
   }
   /* Ningún bloque puede generar scroll lateral en el celular */
   html,body{overflow-x:hidden;max-width:100%;}
-  section,.room,footer{overflow-x:clip;}
+  section,footer{overflow-x:clip;}
   /* Móvil: menos capas pesadas para que deslice fluido */
   @media (max-width:900px){
     body::before{display:none;}
     .nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(243,231,210,.98);}
     .deco,.obj,.sleeve-img{filter:none;}
+  }
+  /* Pantallas muy angostas: espacio para el botón de sonido y titular algo menor */
+  @media (max-width:560px){
+    .hero-content{padding-top:150px;padding-bottom:28px;}
+  }
+  @media (max-width:380px){
+    .hero-content h1{font-size:2.05rem;}
+    .hero-content p{font-size:1rem;margin-top:16px;}
+    .hero-btns{margin-top:22px;}
+    .hero-btns .btn{padding:13px 22px;}
+    .hero-eyebrow{letter-spacing:3px;margin-bottom:12px;}
   }
   /* Móvil: el botón de sonido va arriba, visible sin deslizar; el hero ocupa el alto real de la pantalla */
   @media (max-width:900px){
@@ -635,6 +601,9 @@
     .sound-btn{top:96px;bottom:auto;right:16px;left:auto;padding:12px 16px;font-size:.8rem;background:var(--dorado);color:var(--cafe);border-color:var(--dorado);box-shadow:0 6px 16px rgba(0,0,0,.35);}
     .sound-btn:hover{background:var(--crema);}
   }
+  /* Tocadiscos: se reduce solo lo necesario para caber en la columna (deck de 340 px) */
+  @media (max-width:400px){.tocadiscos .deck{zoom:.9;}}
+  @media (max-width:340px){.tocadiscos .deck{zoom:.8;}}
   /* Móvil: sin animaciones de aparición (el contenido se ve de inmediato y la página va más fluida) */
   @media (max-width:900px){
     .reveal,.reveal-scale,.stagger > *,.hero-eyebrow,.hero-content h1,.hero-content p,.hero-btns{
@@ -704,7 +673,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#inicio" class="nav-logo">
-      <img src="assets/senen-logo.jpg" alt="Logo Senén Café de especialidad">
+      <img src="assets/senen-logo.jpg" alt="Logo Senén Café de especialidad" width="54" height="54">
       <span>SENÉN</span>
     </a>
     <nav class="nav-links" aria-label="Principal">
@@ -715,9 +684,9 @@
       <a href="#contacto">Contacto</a>
     </nav>
     <a href="#contacto" class="btn btn-primary btn-sm">Vení a conocernos</a>
-    <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menú">
     <a href="#sobre">Historia</a>
     <a href="#tocadiscos">Tocadiscos</a>
     <a href="#carta">Carta</a>
@@ -728,12 +697,13 @@
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <video class="hero-video" id="heroVideo" poster="assets/web/hero-movil.webp" preload="metadata" autoplay muted loop playsinline>
+  <video class="hero-video" id="heroVideo" preload="metadata" autoplay muted loop playsinline aria-hidden="true" tabindex="-1">
     <source src="assets/web/hero-pc.webm" type="video/webm" media="(min-width: 901px)">
     <source src="assets/web/hero-pc.mp4" type="video/mp4" media="(min-width: 901px)">
     <source src="assets/web/hero-movil.webm" type="video/webm">
     <source src="assets/web/hero-movil.mp4" type="video/mp4">
   </video>
+  <script>document.getElementById("heroVideo").poster = matchMedia("(min-width: 901px)").matches ? "assets/web/hero-pc.webp" : "assets/web/hero-movil.webp";</script>
   <div class="hero-content">
     <div class="hero-eyebrow">Café de especialidad · Buenos Aires</div>
     <h1>El sabor de una Cuba que sigue sonando.</h1>
@@ -749,8 +719,8 @@
 
 <!-- HISTORIA · pared de cemento amarillo con rincón de muebles -->
 <section class="about wall-yellow" id="sobre" style="--floor:80px">
-  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-3.webp" alt="" aria-hidden="true" style="left:53%;top:-5px;width:46px">
-  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-4.webp" alt="" aria-hidden="true" style="left:85%;top:-5px;width:100px">
+  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-3.webp" alt="" loading="lazy" decoding="async" aria-hidden="true" style="left:53%;top:-5px;width:46px">
+  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-4.webp" alt="" loading="lazy" decoding="async" aria-hidden="true" style="left:85%;top:-5px;width:100px">
   <div class="wrap about-grid">
     <div class="about-text reveal">
       <div class="section-tag">Nuestra historia</div>
@@ -774,11 +744,11 @@
           <div class="c-foot">Lun a sáb · 9 a 19:30</div>
         </div>
       </div>
-      <img class="sleeve-img" src="assets/web/tapa-senen-suarez.webp" alt="" style="left:69cqw;top:4cqw;--s:31.2cqw;transform:rotate(4deg)">
+      <img class="sleeve-img" src="assets/web/tapa-senen-suarez.webp" alt="" loading="lazy" decoding="async" style="left:69cqw;top:4cqw;--s:31.2cqw;transform:rotate(4deg)">
       <!-- muebles sobre el piso (assets/Decoración) -->
-      <img class="deco" src="assets/Decoración/recortes/sillon-naranja.webp" alt="" style="left:-10cqw;bottom:-10cqw;height:48.6cqw">
-      <img class="deco" src="assets/Decoración/recortes/mueble-nogal.webp" alt="" style="left:32.1cqw;bottom:-10cqw;width:36.5cqw">
-      <img class="deco" src="assets/Decoración/recortes/sillon-azul.webp" alt="" style="left:71.6cqw;bottom:-15.3cqw;height:48.6cqw">
+      <img class="deco" src="assets/Decoración/recortes/sillon-naranja.webp" alt="" loading="lazy" decoding="async" style="left:-10cqw;bottom:-10cqw;height:48.6cqw">
+      <img class="deco" src="assets/Decoración/recortes/mueble-nogal.webp" alt="" loading="lazy" decoding="async" style="left:32.1cqw;bottom:-10cqw;width:36.5cqw">
+      <img class="deco" src="assets/Decoración/recortes/sillon-azul.webp" alt="" loading="lazy" decoding="async" style="left:71.6cqw;bottom:-15.3cqw;height:48.6cqw">
     </div>
   </div>
   <div class="floor floor-wood" style="--floor:80px"></div>
@@ -793,7 +763,7 @@
   <div class="wrap homage">
     <div class="pack reveal">
       <span class="vinyl-out" aria-hidden="true"></span>
-      <img src="assets/web/tapa-senen-suarez.webp" alt="Tapa del disco Perlas cubanas, de Senén Suárez" loading="lazy">
+      <img src="assets/web/tapa-senen-suarez.webp" alt="Tapa del disco Perlas cubanas, de Senén Suárez" width="500" height="500" loading="lazy" decoding="async">
       <div class="pack-cap">Senén Suárez · Perlas cubanas</div>
     </div>
     <div class="homage-text reveal">
@@ -837,7 +807,7 @@
         <div class="deck" id="deck">
           <button class="vinyl-btn" id="vinylBtn" type="button" aria-label="Reproducir o pausar la música de Senén en Spotify">
             <div class="vinyl" id="vinyl">
-              <div class="vinyl-label"><div><span>SENÉN</span><small>café de especialidad</small></div></div>
+              <div class="vinyl-label"><div><span>SENÉN</span><span>CAFÉ</span></div></div>
             </div>
           </button>
           <div class="tonearm" aria-hidden="true"><div class="arm-bar"></div><div class="headshell"></div></div>
@@ -926,15 +896,15 @@
       <h2 class="section-title">Momentos en Senén</h2>
     </div>
     <div class="gallery-grid stagger">
-      <div class="gallery-item"><img src="assets/web/senen-fachada.webp" alt="Fachada de Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-pared-ladrillo.webp" alt="Pared de ladrillo con pizarra y repisas en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-pared-posters.webp" alt="Pared con carteles y cuadros en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-piano.webp" alt="Piano en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-sala-verde.webp" alt="Sala con sillones verdes en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-vaso-senen.webp" alt="Vaso con el rostro de Senén" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-barra-amarilla.webp" alt="Barra amarilla de Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-latte-croissant.webp" alt="Latte y croissant en Senén Café" loading="lazy"></div>
-      <div class="gallery-item hide-m"><img src="assets/web/senen-sala-azul.webp" alt="Interior de Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-fachada.webp" alt="Fachada de Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-pared-ladrillo.webp" alt="Pared de ladrillo con pizarra y repisas en Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-pared-posters.webp" alt="Pared con carteles y cuadros en Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-piano.webp" alt="Piano en Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-sala-verde.webp" alt="Sala con sillones verdes en Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-vaso-senen.webp" alt="Vaso con el rostro de Senén" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-barra-amarilla.webp" alt="Barra amarilla de Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item"><img src="assets/web/senen-latte-croissant.webp" alt="Latte y croissant en Senén Café" loading="lazy" decoding="async"></div>
+      <div class="gallery-item hide-m"><img src="assets/web/senen-sala-azul.webp" alt="Interior de Senén Café" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -990,33 +960,39 @@
   </div>
 </footer>
 
-<!-- Spotify IFrame API: controla el reproductor del tocadiscos -->
-<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Menú móvil
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
-  burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-  });
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      burger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
+  function setMenu(open) {
+    burger.classList.toggle('open', open);
+    mobileMenu.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) { setMenu(false); burger.focus(); } });
+  window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
   // Video del hero: loop; el sonido lo activa el visitante (los navegadores bloquean el audio automático)
   const heroVideo = document.getElementById('heroVideo');
   const soundBtn = document.getElementById('soundBtn');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (window.matchMedia('(min-width: 901px)').matches) heroVideo.poster = 'assets/web/hero-pc.webp';
+  // Algunos navegadores ignoran el atributo media de <source>: si eligió el video equivocado, se corrige
+  (function(){
+    const wantsPC = window.matchMedia('(min-width: 901px)').matches;
+    const cur = heroVideo.currentSrc || '';
+    if (cur && /hero-pc/.test(cur) !== wantsPC) {
+      const base = 'assets/web/hero-' + (wantsPC ? 'pc' : 'movil');
+      heroVideo.innerHTML = '<source src="' + base + '.webm" type="video/webm"><source src="' + base + '.mp4" type="video/mp4">';
+      heroVideo.load();
+      if (!reduceMotion) heroVideo.play().catch(() => {});
+    }
+  })();
 
   if (reduceMotion) { heroVideo.pause(); }
   else { heroVideo.play().catch(() => {}); }
@@ -1060,15 +1036,29 @@
     });
   };
 
-  // Si el reproductor de Spotify no carga, mostramos el enlace directo
-  setTimeout(() => {
-    if (!spotifyController) {
-      document.getElementById('playerFallback').style.display = 'block';
-      status.textContent = 'Reproductor no disponible';
-    }
-  }, 7000);
+  // La API de Spotify se descarga cuando el visitante se acerca al tocadiscos (o al tocar el disco): la carga inicial queda liviana
+  let spotifyRequested = false;
+  function loadSpotify() {
+    if (spotifyRequested) return;
+    spotifyRequested = true;
+    const s = document.createElement('script');
+    s.src = 'https://open.spotify.com/embed/iframe-api/v1';
+    s.async = true;
+    document.body.appendChild(s);
+    // Si el reproductor no carga, mostramos el enlace directo
+    setTimeout(() => {
+      if (!spotifyController) {
+        document.getElementById('playerFallback').style.display = 'block';
+        status.textContent = 'Reproductor no disponible';
+      }
+    }, 8000);
+  }
+  new IntersectionObserver((entries, obs) => {
+    if (entries.some(e => e.isIntersecting)) { loadSpotify(); obs.disconnect(); }
+  }, { rootMargin: '900px 0px' }).observe(document.getElementById('tocadiscos'));
 
   vinylBtn.addEventListener('click', () => {
+    loadSpotify();
     if (!spotifyController) { status.textContent = 'Cargando reproductor…'; return; }
     setVideoSound(false);
     spotifyController.togglePlay();
