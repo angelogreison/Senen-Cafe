@@ -615,7 +615,7 @@
   @media (max-width:900px){
     .about-visual{overflow:hidden;padding:24px 0 0;}
     .corner{transform:scale(.72);transform-origin:50% 100%;}
-    .about-grid{padding-bottom:calc(var(--floor,80px) + 24px);}
+    .about-grid{padding-bottom:calc(var(--floor,80px) - 16px);}
     .about-visual .poster,.about-visual::before{display:none;}
     .sleeve-img{max-width:none;}
     .tocadiscos .deck{zoom:.9;}
@@ -721,9 +721,11 @@
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <video class="hero-video" id="heroVideo" poster="assets/web/hero-poster.webp" autoplay muted loop playsinline>
-    <source src="assets/web/hero-web.webm" type="video/webm">
-    <source src="assets/web/hero-web-h264.mp4" type="video/mp4">
+  <video class="hero-video" id="heroVideo" poster="assets/web/hero-movil.webp" preload="metadata" autoplay muted loop playsinline>
+    <source src="assets/web/hero-pc.webm" type="video/webm" media="(min-width: 901px)">
+    <source src="assets/web/hero-pc.mp4" type="video/mp4" media="(min-width: 901px)">
+    <source src="assets/web/hero-movil.webm" type="video/webm">
+    <source src="assets/web/hero-movil.mp4" type="video/mp4">
   </video>
   <div class="hero-content">
     <div class="hero-eyebrow">Café de especialidad · Buenos Aires</div>
@@ -1007,6 +1009,7 @@
   const heroVideo = document.getElementById('heroVideo');
   const soundBtn = document.getElementById('soundBtn');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (window.matchMedia('(min-width: 901px)').matches) heroVideo.poster = 'assets/web/hero-pc.webp';
 
   if (reduceMotion) { heroVideo.pause(); }
   else { heroVideo.play().catch(() => {}); }
