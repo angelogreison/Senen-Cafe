@@ -20,7 +20,7 @@
 <meta name="description" content="Senén, café de especialidad en Buenos Aires. El sabor de una Cuba que sigue sonando.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Special+Elite&family=Yellowtail&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Yellowtail&display=swap" rel="stylesheet">
 <style>
   /* =========================================================
      SENÉN · La página es la sala de estar del café.
@@ -47,10 +47,6 @@
     background:var(--crema);color:var(--cafe);
     font-family:'DM Sans',sans-serif;font-size:1.0625rem;line-height:1.7;font-weight:400;
     overflow-x:hidden;
-  }
-  body::before{ /* grano fotográfico muy sutil */
-    content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.06;mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
   h1,h2,h3{font-family:'Fraunces',serif;color:var(--cafe);line-height:1.1;}
   h1{font-weight:700;font-size:clamp(2.4rem,6vw,4.25rem);}
@@ -108,7 +104,7 @@
      PAREDES
      ========================================================= */
   /* Ladrillo (textura aportada por el cliente) */
-  .wall-brick{background:url('assets/web/ladrillo-pared.jpg') center top/1100px auto repeat;}
+  .wall-brick{background:url('assets/web/ladrillo-pared.webp') center top/1100px auto repeat;}
   .wall-brick::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(43,27,22,.18),rgba(43,27,22,.42));pointer-events:none;}
   .wall-brick.dark::before{background:rgba(43,27,22,.62);}
   .wall-brick.terra::before{background:linear-gradient(rgba(134,57,31,.74),rgba(90,36,20,.86));}
@@ -135,7 +131,7 @@
   }
 
   /* Madera (tablones) */
-  .wall-floor{background:linear-gradient(rgba(43,27,22,.18),rgba(43,27,22,.18)),url('assets/web/piso-madera.jpg') center top/420px auto repeat;}
+  .wall-floor{background:linear-gradient(rgba(43,27,22,.18),rgba(43,27,22,.18)),url('assets/web/piso-madera.webp') center top/420px auto repeat;}
   .wall-wood{
     background-color:#5e3a21;
     background-image:
@@ -152,7 +148,7 @@
 
   /* Pisos */
   .floor{position:absolute;left:0;right:0;bottom:0;height:var(--floor,66px);border-top:12px solid #3b2418;box-shadow:inset 0 16px 14px -8px rgba(0,0,0,.5);z-index:1;}
-  .floor-wood{background:linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,0) 55%),url('assets/web/piso-madera.jpg') center top/340px auto repeat;}
+  .floor-wood{background:linear-gradient(rgba(0,0,0,.42),rgba(0,0,0,0) 55%),url('assets/web/piso-madera.webp') center top/340px auto repeat;}
   .floor-tile{background:repeating-conic-gradient(#d8cdb4 0 25%,#b4a687 0 50%) 0 0/48px 48px;}
   .floor-terra{background:repeating-conic-gradient(#b8553a 0 25%,#9c452e 0 50%) 0 0/48px 48px;}
 
@@ -255,7 +251,7 @@
      ========================================================= */
   .nav{
     position:fixed;top:0;left:0;width:100%;z-index:100;padding:12px 0;
-    background:rgba(243,231,210,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    background:rgba(243,231,210,.98);
     border-bottom:3px solid var(--dorado);box-shadow:0 4px 20px rgba(43,27,22,.12);
   }
   .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;}
@@ -619,6 +615,7 @@
   @media (max-width:900px){
     .about-visual{overflow:hidden;padding:24px 0 0;}
     .corner{transform:scale(.72);transform-origin:50% 100%;}
+    .about-grid{padding-bottom:calc(var(--floor,80px) + 24px);}
     .about-visual .poster,.about-visual::before{display:none;}
     .sleeve-img{max-width:none;}
     .tocadiscos .deck{zoom:.9;}
@@ -626,6 +623,18 @@
   /* Ningún bloque puede generar scroll lateral en el celular */
   html,body{overflow-x:hidden;max-width:100%;}
   section,.room,footer{overflow-x:clip;}
+  /* Móvil: menos capas pesadas para que deslice fluido */
+  @media (max-width:900px){
+    body::before{display:none;}
+    .nav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(243,231,210,.98);}
+    .deco,.obj,.sleeve-img{filter:none;}
+  }
+  /* Móvil: el botón de sonido va arriba, visible sin deslizar; el hero ocupa el alto real de la pantalla */
+  @media (max-width:900px){
+    .hero{height:100vh;height:100svh;min-height:560px;}
+    .sound-btn{top:96px;bottom:auto;right:16px;left:auto;padding:12px 16px;font-size:.8rem;background:var(--dorado);color:var(--cafe);border-color:var(--dorado);box-shadow:0 6px 16px rgba(0,0,0,.35);}
+    .sound-btn:hover{background:var(--crema);}
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -712,7 +721,7 @@
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <video class="hero-video" id="heroVideo" poster="assets/web/hero-poster.jpg" autoplay muted loop playsinline>
+  <video class="hero-video" id="heroVideo" poster="assets/web/hero-poster.webp" autoplay muted loop playsinline>
     <source src="assets/web/hero-web.webm" type="video/webm">
     <source src="assets/web/hero-web-h264.mp4" type="video/mp4">
   </video>
@@ -731,8 +740,8 @@
 
 <!-- HISTORIA · pared de cemento amarillo con rincón de muebles -->
 <section class="about wall-yellow" id="sobre" style="--floor:80px">
-  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-3.png" alt="" aria-hidden="true" style="left:53%;top:-5px;width:46px">
-  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-4.png" alt="" aria-hidden="true" style="left:85%;top:-5px;width:100px">
+  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-3.webp" alt="" aria-hidden="true" style="left:53%;top:-5px;width:46px">
+  <img class="deco glow hide-t" src="assets/Decoración/recortes/lampara-4.webp" alt="" aria-hidden="true" style="left:85%;top:-5px;width:100px">
   <div class="wrap about-grid">
     <div class="about-text reveal">
       <div class="section-tag">Nuestra historia</div>
@@ -756,11 +765,11 @@
           <div class="c-foot">Lun a sáb · 9 a 19:30</div>
         </div>
       </div>
-      <img class="sleeve-img" src="assets/web/tapa-senen-suarez.jpg" alt="" style="left:69cqw;top:4cqw;--s:31.2cqw;transform:rotate(4deg)">
+      <img class="sleeve-img" src="assets/web/tapa-senen-suarez.webp" alt="" style="left:69cqw;top:4cqw;--s:31.2cqw;transform:rotate(4deg)">
       <!-- muebles sobre el piso (assets/Decoración) -->
-      <img class="deco" src="assets/Decoración/recortes/sillon-naranja.png" alt="" style="left:-10cqw;bottom:-10cqw;height:48.6cqw">
-      <img class="deco" src="assets/Decoración/recortes/mueble-nogal.png" alt="" style="left:32.1cqw;bottom:-10cqw;width:36.5cqw">
-      <img class="deco" src="assets/Decoración/recortes/sillon-azul.png" alt="" style="left:71.6cqw;bottom:-15.3cqw;height:48.6cqw">
+      <img class="deco" src="assets/Decoración/recortes/sillon-naranja.webp" alt="" style="left:-10cqw;bottom:-10cqw;height:48.6cqw">
+      <img class="deco" src="assets/Decoración/recortes/mueble-nogal.webp" alt="" style="left:32.1cqw;bottom:-10cqw;width:36.5cqw">
+      <img class="deco" src="assets/Decoración/recortes/sillon-azul.webp" alt="" style="left:71.6cqw;bottom:-15.3cqw;height:48.6cqw">
     </div>
   </div>
   <div class="floor floor-wood" style="--floor:80px"></div>
@@ -769,13 +778,13 @@
 <!-- HOMENAJE · pared de cemento amarillo, tapa de disco real -->
 <section class="homage-sec wall-yellow alt">
   <span class="wdisc hide-t" style="left:3%;top:34px;--s:104px;--lc:#a24a31"></span>
-  <img class="sleeve-img hide-t" src="assets/tapas/tapa-ritmo-de-la-habana.jpg" alt="Tapa del disco Ritmo de La Habana, de Senén Suárez" loading="lazy" style="right:3%;top:30px;--s:156px;transform:rotate(5deg)">
-  <img class="sleeve-img hide-t" src="assets/tapas/tapa-sones-y-guarachas.jpg" alt="Tapa del disco Sones y guarachas, de Senén Suárez" loading="lazy" style="left:6%;bottom:36px;--s:124.8px;transform:rotate(-4deg)">
+  <img class="sleeve-img hide-t" src="assets/tapas/tapa-ritmo-de-la-habana.webp" alt="Tapa del disco Ritmo de La Habana, de Senén Suárez" loading="lazy" style="right:3%;top:30px;--s:156px;transform:rotate(5deg)">
+  <img class="sleeve-img hide-t" src="assets/tapas/tapa-sones-y-guarachas.webp" alt="Tapa del disco Sones y guarachas, de Senén Suárez" loading="lazy" style="left:6%;bottom:36px;--s:124.8px;transform:rotate(-4deg)">
   <span class="wdisc hide-t" style="right:7%;bottom:60px;--s:92px;--lc:#2e625f"></span>
   <div class="wrap homage">
     <div class="pack reveal">
       <span class="vinyl-out" aria-hidden="true"></span>
-      <img src="assets/web/tapa-senen-suarez.jpg" alt="Tapa del disco Perlas cubanas, de Senén Suárez" loading="lazy">
+      <img src="assets/web/tapa-senen-suarez.webp" alt="Tapa del disco Perlas cubanas, de Senén Suárez" loading="lazy">
       <div class="pack-cap">Senén Suárez · Perlas cubanas</div>
     </div>
     <div class="homage-text reveal">
@@ -843,9 +852,9 @@
 <!-- CARTA · pared de madera -->
 <section class="menu wall-yellow" id="carta">
   <span class="wdisc hide-t" style="left:2%;top:90px;--s:100px;--lc:#d89a27" aria-hidden="true"></span>
-  <img class="sleeve-img hide-t" src="assets/tapas/tapa-colores-del-son.jpg" alt="" loading="lazy" style="right:2%;top:140px;--s:143px;transform:rotate(-4deg)" aria-hidden="true">
+  <img class="sleeve-img hide-t" src="assets/tapas/tapa-colores-del-son.webp" alt="" loading="lazy" style="right:2%;top:140px;--s:143px;transform:rotate(-4deg)" aria-hidden="true">
   <span class="wdisc hide-t" style="right:3%;bottom:140px;--s:90px;--lc:#a24a31" aria-hidden="true"></span>
-  <img class="sleeve-img hide-t" src="assets/tapas/tapa-14-joyas-cubanas.jpg" alt="" loading="lazy" style="left:2%;bottom:120px;--s:135.2px;transform:rotate(5deg)" aria-hidden="true">
+  <img class="sleeve-img hide-t" src="assets/tapas/tapa-14-joyas-cubanas.webp" alt="" loading="lazy" style="left:2%;bottom:120px;--s:135.2px;transform:rotate(5deg)" aria-hidden="true">
   <div class="wrap">
     <div class="menu-header reveal head-center">
       <div class="section-tag">Nuestra carta</div>
@@ -908,15 +917,15 @@
       <h2 class="section-title">Momentos en Senén</h2>
     </div>
     <div class="gallery-grid stagger">
-      <div class="gallery-item"><img src="assets/web/senen-fachada.jpg" alt="Fachada de Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-pared-ladrillo.jpg" alt="Pared de ladrillo con pizarra y repisas en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-pared-posters.jpg" alt="Pared con carteles y cuadros en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-piano.jpg" alt="Piano en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-sala-verde.jpg" alt="Sala con sillones verdes en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-vaso-senen.jpg" alt="Vaso con el rostro de Senén" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-barra-amarilla.jpg" alt="Barra amarilla de Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-latte-croissant.jpg" alt="Latte y croissant en Senén Café" loading="lazy"></div>
-      <div class="gallery-item"><img src="assets/web/senen-sala-azul.jpg" alt="Interior de Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-fachada.webp" alt="Fachada de Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-pared-ladrillo.webp" alt="Pared de ladrillo con pizarra y repisas en Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-pared-posters.webp" alt="Pared con carteles y cuadros en Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-piano.webp" alt="Piano en Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-sala-verde.webp" alt="Sala con sillones verdes en Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-vaso-senen.webp" alt="Vaso con el rostro de Senén" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-barra-amarilla.webp" alt="Barra amarilla de Senén Café" loading="lazy"></div>
+      <div class="gallery-item"><img src="assets/web/senen-latte-croissant.webp" alt="Latte y croissant en Senén Café" loading="lazy"></div>
+      <div class="gallery-item hide-m"><img src="assets/web/senen-sala-azul.webp" alt="Interior de Senén Café" loading="lazy"></div>
     </div>
   </div>
 </section>
