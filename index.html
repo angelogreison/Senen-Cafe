@@ -635,6 +635,13 @@
     .sound-btn{top:96px;bottom:auto;right:16px;left:auto;padding:12px 16px;font-size:.8rem;background:var(--dorado);color:var(--cafe);border-color:var(--dorado);box-shadow:0 6px 16px rgba(0,0,0,.35);}
     .sound-btn:hover{background:var(--crema);}
   }
+  /* Móvil: sin animaciones de aparición (el contenido se ve de inmediato y la página va más fluida) */
+  @media (max-width:900px){
+    .reveal,.reveal-scale,.stagger > *,.hero-eyebrow,.hero-content h1,.hero-content p,.hero-btns{
+      opacity:1 !important;transform:none !important;transition:none !important;animation:none !important;
+    }
+    .gallery-item,.info-card,.btn{transition:none !important;}
+  }
 </style>
 <script type="application/ld+json">
 {
